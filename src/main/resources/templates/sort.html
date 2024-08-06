@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Sorting Web App</title>
+    <style>
+    body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    background: #f8f9fa;
+    }
+
+    header {
+    background-color: #343a40;
+    padding: 15px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    }
+
+    h1 {
+    margin: 20px 0;
+    color: #000000;
+    text-align: center;
+    }
+
+    form {
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+    display: block;
+    margin-bottom: 8px;
+    color: #000000;
+    }
+
+    input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    }
+
+    button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+    background-color: #0056b3;
+    }
+
+    h1 {
+    text-align: center;
+    color: #007bff;
+    }
+
+    p {
+    margin-top: 20px;
+    text-align: center;
+    color: #000000;
+    }
+
+    a.logout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    }
+
+    a.logout-button:hover {
+    background-color: #c82333;
+    }
+
+    .radio-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    }
+
+    .radio-container label {
+    margin-right: 15px;
+    }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+    <a href="/">
+        <div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Spring_Boot.svg" alt="Logo">
+        </div>
+    </a>
+    <div>
+        <a class="logout-button" href="/logout">Logout</a>
+    </div>
+</header>
+
+<h1>Welcome to Number Sorting Web Application</h1>
+<form action="/sort" method="post">
+    <label for="numbers">Enter numbers (comma-separated):</label>
+    <input type="text" id="numbers" name="numbers" required>
+
+    <label>Choose sorting type:</label>
+    <div class="radio-container">
+    <input type="radio" id="bubble" name="sortType" value="bubble" required>
+    <label for="bubble">Bubble Sort</label>
+    <input type="radio" id="selection" name="sortType" value="selection" required>
+    <label for="selection">Selection Sort</label>
+    <input type="radio" id="insertion" name="sortType" value="insertion" required>
+    <label for="insertion">Insertion Sort</label>
+    <input type="radio" id="quick" name="sortType" value="quick" required>
+    <label for="quick">Quick Sort</label>
+    </div>
+    <button type="submit">Sort</button>
+</form>
+
+<p th:if="${numbers != null}">
+    Your Input: <span th:text="${numbers}"></span>
+</p>
+
+<p th:if="${sortedNumbers != null}">
+    Sorted Output: <span th:each="number : ${sortedNumbers}" th:text="${number + ' '}"></span>
+</p>
+
+</body>
+</html>
